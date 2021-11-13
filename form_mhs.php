@@ -1,3 +1,15 @@
+<?php
+
+$server = "localhost";
+$username = "root";
+$password = "";
+$database = "dbmhs";
+
+$koneksi = mysqli_connect($server,$username,$password,$database)or die(mysqli_error($koneksi));
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +19,6 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<style>
-	button.btn.add::before {
-  		font-family: fontAwesome;
-  		content: "\f067\00a0";
-	}
-
-</style>
 <body>
 	<section class="section">
 	    <div class="container">
@@ -25,6 +30,36 @@
 			  </header>
 			  <div class="card-content">
 			  	<a href="create.php" class="button is-link"><span class="fas fa-plus-circle" style="margin-right: 8px;"></span>Tambah Data Mahasiswa</a>
+			  	<table class="table is-striped mt-3 center" style="text-align:center; margin: 0px auto;">
+			  		<thead>
+			  			<tr>
+				  			<th>No</th>
+				  			<th>Nama</th>
+				  			<th>Jurusan</th>
+				  			<th>Mata Kuliah</th>
+				  			<th>OPSI</th>
+			  			</tr>
+			  			<tbody>
+			  				<?php
+							  $no = 1;
+							  $tampil = mysqli_query($koneksi, "SELECT * FROM tb_mhs order by id_mhs desc");
+							  while($data = mysqli_fetch_array($tampil)) :
+							?>
+							<tr>
+								<td><?=$no++;?></td>
+								<td><?=$data['nama']?></td>
+								<td><?=$data['jurusan']?></td>
+								<td><?=$data['mata_kuliah']?></td>
+								<td>
+									<a href="#" class="button is-info is-small">Edit</a>
+									<a href="#" class="button is-danger is-small">Hapus</a>
+								</td>
+							</tr>
+							<?php endwhile; ?>
+			  				
+			  			</tbody>	
+			  		</thead>
+			  		
 
 
 

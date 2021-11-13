@@ -5,11 +5,6 @@ $username = "root";
 $password = "";
 $database = "dbmhs";
 
-$koneksi = mysqli_connect($server,$username,$password,$database);
-if(!$koneksi){
-	die("Database Tidak Terkoneksi");
-}else{
-	echo "Koneksi Berhasil";
-}
+$koneksi = mysqli_connect($server,$username,$password,$database)or die(mysqli_error($koneksi));
 
 ?>

@@ -1,3 +1,22 @@
+<?php 
+
+include "koneksi.php";
+
+$nama = $_POST['nama'];
+$jurusan = $_POST['jurusan'];
+$mata_kuliah = $_POST['mata_kuliah'];
+
+// if(isset($_POST['simpan'])){
+// 	$query=mysqli_query("INSERT into tb_mhs VALUES('$nama','$jurusan','$mata_kuliah')")or die(mysqli_error($query));
+// }
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +41,7 @@
 		    		<div class="field mb-3 row">
 					  <label class="label">Nama Mahasiswa</label>
 					  <div class="control has-icons-left has-icons-right">
-							<input class="input is-success" type="text" placeholder="Masukan Nama Mahasiswa" valu="">
+							<input class="input is-success" type="text" placeholder="Masukan Nama Mahasiswa" id="nama" name="nama" valu="">
 							<span class="icon is-small is-left">
 							    <i class="fas fa-user"></i>
 							</span>
@@ -33,7 +52,7 @@
 					  <label class="label">Jurusan</label>
 					  <div class="control has-icons-left has-icons-right">
 					  	<div class="col-sm-10">
-						    <input class="input is-info" type="text" placeholder="Masukan Jurusan" valu="">
+						    <input class="input is-info" type="text" placeholder="Masukan Jurusan" valu="" id="nama" name="jurusan">
 						    <span class="icon is-small is-left">
 						      <i class="fas fa-school"></i>
 						    </span>
@@ -45,7 +64,7 @@
 					  <label class="label">Mata Kuliah</label>
 					  <div class="control has-icons-left has-icons-right">
 					  	<div class="col-sm-10">
-						    <input class="input is-link" type="text" placeholder="Masukan Mata Kuliah" valu="">
+						    <input class="input is-link" type="text" placeholder="Masukan Mata Kuliah" valu="" id="mata_kuliah" name="mata_kuliah">
 						    <span class="icon is-small is-left">
 						      <i class="fas fa-chalkboard-teacher"></i>
 						    </span>
