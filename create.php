@@ -1,20 +1,40 @@
-<?php 
+<?php
 
-include "koneksi.php";
+$server = "localhost";
+$username = "root";
+$password = "";
+$database = "dbmhs";
 
-$nama = $_POST['nama'];
-$jurusan = $_POST['jurusan'];
-$mata_kuliah = $_POST['mata_kuliah'];
+$koneksi = mysqli_connect($server,$username,$password,$database)or die(mysqli_error($koneksi));
 
-// if(isset($_POST['simpan'])){
-// 	$query=mysqli_query("INSERT into tb_mhs VALUES('$nama','$jurusan','$mata_kuliah')")or die(mysqli_error($query));
-// }
+if(isset($_POST['bsimpan']))
+{
+	$simpan = mysqli_query($koneksi, "INSERT INTO tb_mhs (nama,jurusan,matakuliah) 
+		VALUES 	('$_POST[nama]',
+				'$_POST[jurusan]',
+				'$_POST[mata_kuliah]')
+
+	");
+
+	if($simpan)
+	{
+		echo "<script>
+				alert('Simpan Data Sukses');
+				documnet.location='form_mhs.php;
+				</script>";
+	}
+	else
+	{
+		echo "<script>
+				alert('Simpan Data Gagal');
+				documnet.location='form_mhs.php;
+				</script>";
+
+	}
+}
+
 
 ?>
-
-
-
-
 
 
 <!DOCTYPE html>
@@ -37,7 +57,7 @@ $mata_kuliah = $_POST['mata_kuliah'];
 			  </header>
 			  <div class="card-content">
 			   
-		    	<form action="" method="POST">
+		    	<form action="form_mhs.php" method="POST">
 		    		<div class="field mb-3 row">
 					  <label class="label">Nama Mahasiswa</label>
 					  <div class="control has-icons-left has-icons-right">
@@ -64,7 +84,7 @@ $mata_kuliah = $_POST['mata_kuliah'];
 					  <label class="label">Mata Kuliah</label>
 					  <div class="control has-icons-left has-icons-right">
 					  	<div class="col-sm-10">
-						    <input class="input is-link" type="text" placeholder="Masukan Mata Kuliah" valu="" id="mata_kuliah" name="mata_kuliah">
+						    <input class="input is-link" type="text" placeholder="Masukan Mata Kuliah" value="" id="mata_kuliah" name="mata_kuliah">
 						    <span class="icon is-small is-left">
 						      <i class="fas fa-chalkboard-teacher"></i>
 						    </span>
@@ -73,7 +93,7 @@ $mata_kuliah = $_POST['mata_kuliah'];
 						</div>
 					</div>
 					<footer class="card-footer">
-					   <button class="button is-success mt-3" style="margin-right: 10px;">Simpan</button>
+					   <button class="button is-success mt-3" style="margin-right: 10px;" name="simpan">Simpan</button>
 					   <a href="form_mhs.php" class="button is-warning mt-3">Kembali</a>
 					</footer>
 				</form>
