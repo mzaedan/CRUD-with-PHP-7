@@ -7,13 +7,12 @@ $database = "dbmhs";
 
 $koneksi = mysqli_connect($server,$username,$password,$database)or die(mysqli_error($koneksi));
 
-if(isset($_POST['bsimpan']))
+if(isset($_POST['simpan']))
 {
-	$simpan = mysqli_query($koneksi, "INSERT INTO tb_mhs (nama,jurusan,matakuliah) 
+	$simpan = mysqli_query($koneksi, "INSERT INTO tb_mhs (nama,jurusan,mata_kuliah) 
 		VALUES 	('$_POST[nama]',
 				'$_POST[jurusan]',
 				'$_POST[mata_kuliah]')
-
 	");
 
 	if($simpan)
@@ -32,7 +31,6 @@ if(isset($_POST['bsimpan']))
 
 	}
 }
-
 
 ?>
 

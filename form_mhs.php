@@ -7,8 +7,33 @@ $database = "dbmhs";
 
 $koneksi = mysqli_connect($server,$username,$password,$database)or die(mysqli_error($koneksi));
 
-?>
+if(isset($_POST['simpan']))
+{
+	$simpan = mysqli_query($koneksi, "INSERT INTO tb_mhs (nama,jurusan,mata_kuliah) 
+		VALUES 	('$_POST[nama]',
+				'$_POST[jurusan]',
+				'$_POST[mata_kuliah]')
+	");
 
+	if($simpan)
+	{
+		echo "<script>
+				alert('Simpan Data Sukses');
+				documnet.location='form_mhs.php;
+				</script>";
+	}
+	else
+	{
+		echo "<script>
+				alert('Simpan Data Gagal');
+				documnet.location='form_mhs.php;
+				</script>";
+
+	}
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -43,7 +68,7 @@ $koneksi = mysqli_connect($server,$username,$password,$database)or die(mysqli_er
 			  				<?php
 							  $no = 1;
 							  $tampil = mysqli_query($koneksi, "SELECT * FROM tb_mhs order by id_mhs desc");
-							  while($data = mysqli_fetch_array($tampil)) :
+							  while($data = mysqli_fetch_array($tampil)):
 							?>
 							<tr>
 								<td><?=$no++;?></td>
@@ -51,7 +76,7 @@ $koneksi = mysqli_connect($server,$username,$password,$database)or die(mysqli_er
 								<td><?=$data['jurusan']?></td>
 								<td><?=$data['mata_kuliah']?></td>
 								<td>
-									<a href="#" class="button is-info is-small">Edit</a>
+									<a href="edit.php?&id=<?=$data['id_mhs']?>" class="button is-info is-small">Edit</a>
 									<a href="#" class="button is-danger is-small">Hapus</a>
 								</td>
 							</tr>
@@ -59,16 +84,7 @@ $koneksi = mysqli_connect($server,$username,$password,$database)or die(mysqli_er
 			  				
 			  			</tbody>	
 			  		</thead>
-			  		
-
-
-
-				
- 
-
-				
-  					
-			    </div>
+				</table>
 			  </div>
 			</div>
 		</div>
