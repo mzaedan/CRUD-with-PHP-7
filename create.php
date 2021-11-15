@@ -1,11 +1,8 @@
 <?php
 
-$server = "localhost";
-$username = "root";
-$password = "";
-$database = "dbmhs";
+include('koneksi.php');
 
-$koneksi = mysqli_connect($server,$username,$password,$database)or die(mysqli_error($koneksi));
+
 
 if(isset($_POST['simpan']))
 {
@@ -14,22 +11,6 @@ if(isset($_POST['simpan']))
 				'$_POST[jurusan]',
 				'$_POST[mata_kuliah]')
 	");
-
-	if($simpan)
-	{
-		echo "<script>
-				alert('Simpan Data Sukses');
-				documnet.location='form_mhs.php;
-				</script>";
-	}
-	else
-	{
-		echo "<script>
-				alert('Simpan Data Gagal');
-				documnet.location='form_mhs.php;
-				</script>";
-
-	}
 }
 
 ?>
