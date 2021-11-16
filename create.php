@@ -3,14 +3,91 @@
 include('koneksi.php');
 
 
-
+//jika tombol simpan diklik
 if(isset($_POST['simpan']))
 {
-	$simpan = mysqli_query($koneksi, "INSERT INTO tb_mhs (nama,jurusan,mata_kuliah) 
-		VALUES 	('$_POST[nama]',
-				'$_POST[jurusan]',
-				'$_POST[mata_kuliah]')
-	");
+	//Pengujian Apakah data akan diedit atau disimpan baru
+	if($_GET['hal'] == "edit")
+	{
+		//Data akan di edit
+		$edit = mysqli_query($koneksi, "UPDATE tb_mhs set
+											 nama = '$_POST[nama]',
+											 jurusan = '$_POST[jurusan]',
+											 mata_kuliah = '$_POST[mata_kuliah]',
+										 WHERE id_mhs = '$_GET[id]'
+									   ");
+		if($edit) //jika edit sukses
+		{
+			echo "<script>
+					alert('Edit data suksess!');
+					document.location='form_mhs.php';
+				 </script>";
+		}
+		else
+		{
+			echo "<script>
+					alert('Edit data GAGAL!!');
+					document.location='form_mhs.php';
+				 </script>";
+		}
+	}
+	else
+	{
+		//Data akan disimpan Baru
+		$simpan = mysqli_query($koneksi, "INSERT INTO tb_mhs (nama, jurusan, mata_kuliah)
+									  VALUES ('$_POST[nama]', 
+											   '$_POST[jurusan]', 
+											   '$_POST[mata_kuliah]'
+									 ");
+		if($simpan) //jika simpan sukses
+		{
+			echo "<script>
+					alert('Simpan data suksess!');
+					document.location='form_mhs.php';
+				 </script>";
+		}
+		else
+		{
+			echo "<script>
+					alert('Simpan data GAGAL!!');
+					document.location='form_mhs.php';
+				 </script>";
+		}
+	}
+
+
+	
+}
+
+
+//Pengujian jika tombol Edit / Hapus di klik
+if(isset($_GET['hal']))
+{
+	//Pengujian jika edit Data
+	if($_GET['hal'] == "edit")
+	{
+		//Tampilkan Data yang akan diedit
+		$tampil = mysqli_query($koneksi, "SELECT * FROM tb_mhs WHERE id_mhs = '$_GET[id]' ");
+		$data = mysqli_fetch_array($tampil);
+		if($data)
+		{
+			//Jika data ditemukan, maka data ditampung ke dalam variabel
+			$nama = $data['nama'];
+			$jurusan = $data['jurusan'];
+			$mata_kuliah = $data['mata_kuliah'];
+		}
+	}
+	else if ($_GET['hal'] == "hapus")
+	{
+		//Persiapan hapus data
+		$hapus = mysqli_query($koneksi, "DELETE FROM tb_mhs WHERE id_mhs = '$_GET[id]' ");
+		if($hapus){
+			echo "<script>
+					alert('Hapus Data Suksess!!');
+					document.location='index.php';
+				 </script>";
+		}
+	}
 }
 
 ?>
