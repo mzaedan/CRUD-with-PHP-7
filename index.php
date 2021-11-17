@@ -168,7 +168,7 @@ if(isset($_GET['hal']))
 			<div class="card-content">
 			<a href="form.php" class="button is-link"><span class="fas fa-plus-circle" style="margin-right: 8px;"></span>Tambah Data Mahasiswa</a>
 			<a href="importexcel.php" class="button is-success"><span class="fas fa-file-export" style="margin-right: 8px;"></span>Export Ke Excel</a>
-			<a href="#" class="button is-primary"><span class="fas fa-file-import" style="margin-right: 8px;"></span>Import Ke Database</a>
+			<a href="upload.php" class="button is-primary"><span class="fas fa-file-import" style="margin-right: 8px;"></span>Import Ke Database</a>
 			<table class="table is-striped mt-3 center" style="text-align:center; margin: 0px auto;">
 				<thead>
 					<tr>
