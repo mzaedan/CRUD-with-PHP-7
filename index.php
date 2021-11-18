@@ -155,7 +155,11 @@ if(isset($_GET['hal']))
 	</div>
 </section>
 
-
+<?php 
+	if(isset($_GET['berhasil'])){
+		echo "<p>".$_GET['berhasil']." Data berhasil di import.</p>";
+	}
+?>
 
 <section class="section">
 	<div class="container">
