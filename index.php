@@ -147,7 +147,7 @@ if(isset($_GET['hal']))
 					</div>
 					<footer class="card-footer">
 					   <button class="button is-success mt-3" style="margin-right: 10px;" name="simpan">Simpan</button>
-					   <a href="form_mhs.php" class="button is-warning mt-3">Kembali</a>
+					   <!-- <a href="form_mhs.php" class="button is-warning mt-3">Kembali</a> -->
 					</footer>
 				</form>
 			</div>
@@ -155,9 +155,10 @@ if(isset($_GET['hal']))
 	</div>
 </section>
 
-<?php 
+  <?php 
 	if(isset($_GET['berhasil'])){
-		echo "<p>".$_GET['berhasil']." Data berhasil di import.</p>";
+		echo "<script> alert('Data Berhasil Di Import!!');
+		document.location='index.php';</script>";
 	}
 ?>
 
@@ -208,3 +209,15 @@ if(isset($_GET['hal']))
 		</div>
 	</div>
 </section>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+    const $notification = $delete.parentNode;
+
+    $delete.addEventListener('click', () => {
+      $notification.parentNode.removeChild($notification);
+    });
+  });
+});
+</script>
